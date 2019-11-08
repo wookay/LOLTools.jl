@@ -1,0 +1,15 @@
+name = "LOLTools"
+uuid = "e2c437b3-d38f-4222-8753-dddcd5679a95"
+authors = ["WooKyoung Noh <wookay.noh@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+Jive = "ba5e3d4b-8524-549f-bc71-e76ad9e9deed"
+Bukdu = "3e78a19a-cc83-51d8-955b-515f39fd7955"
+
+[targets]
+test = ["Test", "Jive", "Bukdu"]
