@@ -27,7 +27,7 @@ routes() do
 end
 
 Bukdu.start(8080)
-Plug.Loggers.config[:path_pad] = 35
+merge!(Plug.Loggers.config, Dict(:action_pad => 25, :path_pad => 50))
 
 using HTTP
 const local_api_server = HTTP.URI("http://localhost:8080/")
