@@ -26,7 +26,7 @@ routes() do
     get("/lol/match/v4/matches/:matchId", MatchController, match_by_id)
 end
 
-function mock_action(server, path, headers=[], query=nothing)
+function mock_action(endpoint, path, headers=[], query=nothing)
     if query !== nothing
         path = string(merge(HTTP.URI(path), query=query))
     end
