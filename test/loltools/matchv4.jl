@@ -33,6 +33,8 @@ function mock_action(server, path, headers=[], query=nothing)
     Router.call(get, path, headers).resp
 end
 
+merge!(Plug.Loggers.config, Dict(:action_pad => 25, :path_pad => 50))
+
 MatchV4.match_by_tournament_code("tournamentCode"; action=mock_action)
 MatchV4.match_by_id(0; action=mock_action)
 
