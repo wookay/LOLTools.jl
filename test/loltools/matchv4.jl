@@ -26,15 +26,14 @@ routes() do
     get("/lol/match/v4/matches/:matchId", MatchController, match_by_id)
 end
 
-Bukdu.start(8080)
-merge!(Plug.Loggers.config, Dict(:action_pad => 25, :path_pad => 50))
+function mock_action(server, path, headers=[], query=nothing)
+    if query !== nothing
+        path = string(merge(HTTP.URI(path), query=query))
+    end
+    Router.call(get, path, headers).resp
+end
 
-using HTTP
-const local_api_server = HTTP.URI("http://localhost:8080/")
-
-MatchV4.match_by_tournament_code("tournamentCode"; server=local_api_server)
-MatchV4.match_by_id(0; server=local_api_server)
-
-Bukdu.stop()
+MatchV4.match_by_tournament_code("tournamentCode"; action=mock_action)
+MatchV4.match_by_id(0; action=mock_action)
 
 end # module test_loltools_matchv4

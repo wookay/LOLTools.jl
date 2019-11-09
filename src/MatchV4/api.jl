@@ -12,31 +12,35 @@ end
 struct NoMatch <: AbstractMatch
 end
 
-function _get_request(name::Symbol, url::String)::Vector{UInt8}
-    resp = HTTP.get(url)
-    resp.body
+function http_action(server::HTTP.URI, path::String, headers::Vector{Pair{String,String}}=[], query::Union{Nothing,Dict{String,String}}=nothing)
+    url = string(merge(server, path=path))
+    HTTP.get(url, headers; query=query)
 end
 
 function match_by_tournament_code(tournamentCode::String ;
-                                  server::HTTP.URI=LOL_API_SERVER)::AbstractMatch
-    url = string(merge(server, path="/lol/match/v4/matches/by-tournament-code/$tournamentCode/ids"))
-    _get_request(:match_by_tournament_code, url)
+                                  server::HTTP.URI=LOL_API_SERVER,
+                                  action::Function=http_action)::AbstractMatch
+    resp = action(server, "/lol/match/v4/matches/by-tournament-code/$tournamentCode/ids")
+    resp.body
     NoMatch()
 end
 
 function match_by_id(matchId::Int64 ;
-                     server::HTTP.URI=LOL_API_SERVER)::AbstractMatch
-    url = string(merge(server, path="/lol/match/v4/matches/$matchId"))
-    _get_request(:match_by_id, url)
+                     server::HTTP.URI=LOL_API_SERVER,
+                     action::Function=http_action)::AbstractMatch
+    resp = action(server, "/lol/match/v4/matches/$matchId")
+    resp.body
     NoMatch()
 end
 
 function matchlists(encryptedAccountId ;
-                    server::HTTP.URI=LOL_API_SERVER)
+                    server::HTTP.URI=LOL_API_SERVER,
+                    action::Function=http_action)
 end
 
 function timelines(matchId ;
-                   server::HTTP.URI=LOL_API_SERVER)
+                   server::HTTP.URI=LOL_API_SERVER,
+                   action::Function=http_action)
 end
 
 # module LOLTools.MatchV4
