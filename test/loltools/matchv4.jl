@@ -35,7 +35,9 @@ end
 
 merge!(Plug.Loggers.config, Dict(:action_pad => 25, :path_pad => 50))
 
-MatchV4.match_by_tournament_code("tournamentCode"; action=mock_action)
-MatchV4.match_by_id(0; action=mock_action)
+api_key = ""
+region = "na1"
+MatchV4.match_by_tournament_code(api_key, region, "tournamentCode"; action=mock_action)
+MatchV4.match_by_id(api_key, region, 0; action=mock_action)
 
 end # module test_loltools_matchv4
