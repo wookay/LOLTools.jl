@@ -6,7 +6,8 @@ using LOLTools.MatchV4
 @test MatchV4.match_by_tournament_code isa Function
 @test MatchV4.match_by_id isa Function
 
-using Bukdu
+include("helpers.jl")
+
 struct MatchController <: ApplicationController
     conn::Conn
 end
@@ -25,15 +26,6 @@ routes() do
     get("/lol/match/v4/matches/by-tournament-code/:tournamentCode/ids", MatchController, match_by_tournament_code)
     get("/lol/match/v4/matches/:matchId", MatchController, match_by_id)
 end
-
-function mock_action(endpoint, path, headers=[], query=nothing)
-    if query !== nothing
-        path = string(merge(HTTP.URI(path), query=query))
-    end
-    Router.call(get, path, headers).resp
-end
-
-merge!(Plug.Loggers.config, Dict(:action_pad => 25, :path_pad => 50))
 
 api_key = ""
 region = "na1"
