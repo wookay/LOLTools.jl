@@ -14,4 +14,10 @@ include("SpectatorV4.jl")
 export LeagueV4
 include("LeagueV4.jl")
 
+export ChampionMasteryV4
+include("ChampionMasteryV4.jl")
+
+export DataDragon
+include("DataDragon.jl")
+
 end # module LOLTools
