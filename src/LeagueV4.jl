@@ -1,7 +1,7 @@
 module LeagueV4 # LOLTools
 
-using ..LOLTools: AbstractDTO, lol_api_server, http_action
-using HTTP, JSON2
+using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api
+using HTTP
 
 struct LeagueListDTO <: AbstractDTO
     leagueId
@@ -16,11 +16,8 @@ function by_queue(api_key::String,
                   region::String,
                   queue::String ;
                   endpoint::HTTP.URI = lol_api_server(region),
-                  action::Function = http_action)::Union{Nothing, LeagueListDTO}
-    headers = ["X-Riot-Token" => api_key]
-    resp = action(endpoint, "/lol/league/v4/challengerleagues/by-queue/$queue", headers)
-    data = JSON2.read(IOBuffer(resp.body))
-    LeagueListDTO(data)
+                  action::Function = http_action)::LeagueListDTO
+    call_api(LeagueListDTO, api_key, action, endpoint, "/lol/league/v4/challengerleagues/by-queue/$queue")
 end
 
 end # module LOLTools.LeagueV4

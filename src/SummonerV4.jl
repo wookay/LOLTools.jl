@@ -1,7 +1,7 @@
 module SummonerV4 # LOLTools
 
-using ..LOLTools: AbstractDTO, lol_api_server, http_action
-using HTTP, JSON2
+using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api
+using HTTP
 
 struct SummonerDTO <: AbstractDTO
     profileIconId
@@ -18,22 +18,16 @@ function summoner_by_name(api_key::String,
                           region::String,
                           summonerName::String ;
                           endpoint::HTTP.URI = lol_api_server(region),
-                          action::Function = http_action)::Union{Nothing, SummonerDTO}
-    headers = ["X-Riot-Token" => api_key]
-    resp = action(endpoint, "/lol/summoner/v4/summoners/by-name/$summonerName", headers)
-    data = JSON2.read(IOBuffer(resp.body))
-    SummonerDTO(data)
+                          action::Function = http_action)::SummonerDTO
+    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/by-name/$summonerName")
 end
 
 function summoner_by_id(api_key::String,
                         region::String,
                         encryptedSummonerId::String ;
                         endpoint::HTTP.URI = lol_api_server(region),
-                        action::Function = http_action)::Union{Nothing, SummonerDTO}
-    headers = ["X-Riot-Token" => api_key]
-    resp = action(endpoint, "/lol/summoner/v4/summoners/$encryptedSummonerId", headers)
-    data = JSON2.read(IOBuffer(resp.body))
-    SummonerDTO(data)
+                        action::Function = http_action)::SummonerDTO
+    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/$encryptedSummonerId")
 end
 
 end # module LOLTools.SummonerV4

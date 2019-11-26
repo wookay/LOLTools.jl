@@ -1,7 +1,7 @@
 module MatchV4 # LOLTools
 
-using ..LOLTools: AbstractDTO, lol_api_server, http_action
-using HTTP, JSON2
+using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api
+using HTTP
 
 struct MatchDTO <: AbstractDTO
     seasonId
@@ -20,40 +20,52 @@ struct MatchDTO <: AbstractDTO
     MatchDTO(seasonId, queueId, gameId, participantIdentities, gameVersion, platformId, gameMode, mapId, gameType, teams, participants, gameDuration, gameCreation) = new(seasonId, queueId, gameId, participantIdentities, gameVersion, platformId, gameMode, mapId, gameType, teams, participants, gameDuration, gameCreation)
 end
 
+const MatchReferenceDto = Tuple{(:platformId, :gameId, :champion, :queue, :season, :timestamp, :role, :lane)}
+
+struct MatchlistDto <: AbstractDTO
+    matches # Vector{MatchReferenceDto}
+    totalGames
+    startIndex
+    endIndex
+    MatchlistDto(matches, totalGames, startIndex, endIndex) = new(matches, totalGames, startIndex, endIndex)
+end
+
+struct MatchTimelineDto <: AbstractDTO
+    frames
+    frameInterval
+    MatchTimelineDto(frames, frameInterval) = new(frames, frameInterval)
+end
+
 function match_by_tournament_code(api_key::String,
                                   region::String,
                                   tournamentCode::String ;
                                   endpoint::HTTP.URI = lol_api_server(region),
-                                  action::Function = http_action)::Union{Nothing, MatchDTO}
-    headers = ["X-Riot-Token" => api_key]
-    resp = action(endpoint, "/lol/match/v4/matches/by-tournament-code/$tournamentCode/ids", headers)
-    data = JSON2.read(IOBuffer(resp.body))
-    MatchDTO(data)
+                                  action::Function = http_action)::MatchDTO
+    call_api(MatchDTO, api_key, action, endpoint, "/lol/match/v4/matches/by-tournament-code/$tournamentCode/ids")
 end
 
 function match_by_id(api_key::String,
                      region::String,
                      matchId::Int64 ;
                      endpoint::HTTP.URI = lol_api_server(region),
-                     action::Function = http_action)::Union{Nothing, MatchDTO}
-    headers = ["X-Riot-Token" => api_key]
-    resp = action(endpoint, "/lol/match/v4/matches/$matchId", headers)
-    data = JSON2.read(IOBuffer(resp.body))
-    MatchDTO(data)
+                     action::Function = http_action)::MatchDTO
+    call_api(MatchDTO, api_key, action, endpoint, "/lol/match/v4/matches/$matchId")
 end
 
 function matchlists(api_key::String,
                     region::String,
                     encryptedAccountId::String ;
                     endpoint::HTTP.URI = lol_api_server(region),
-                    action::Function = http_action)
+                    action::Function = http_action)::MatchlistDto
+    call_api(MatchlistDto, api_key, action, endpoint, "/lol/match/v4/matchlists/by-account/$encryptedAccountId")
 end
 
 function timelines(api_key::String,
                    region::String,
-                   matchId::String ;
+                   matchId::Int64 ;
                    endpoint::HTTP.URI = lol_api_server(region),
-                   action::Function = http_action)
+                   action::Function = http_action)::MatchTimelineDto
+    call_api(MatchTimelineDto, api_key, action, endpoint, "/lol/match/v4/timelines/by-match/$matchId")
 end
 
 end # module LOLTools.MatchV4
