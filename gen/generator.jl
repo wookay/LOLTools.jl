@@ -8,9 +8,9 @@ nt = JSON2.read(read(normpath(@__DIR__, "champion.json"), String))
 champions_jl = normpath(@__DIR__, "Champions.jl")
 f = open(champions_jl, "w")
 write(f, "# generated\n")
-write(f, "# type = ", nt.type, "\n")
-write(f, "# format = ", nt.format, "\n")
-write(f, "# version = ", nt.version, "\n")
+write(f, "type = ", repr(nt.type), "\n")
+write(f, "format = ", repr(nt.format), "\n")
+write(f, "version = ", repr(VersionNumber(nt.version)), "\n")
 
 write(f, "Champions = Dict{Int,NamedTuple}(\n")
 for c in nt.data

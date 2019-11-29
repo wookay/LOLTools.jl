@@ -1,7 +1,7 @@
 # generated
-# type = champion
-# format = standAloneComplex
-# version = 9.22.1
+type = "champion"
+format = "standAloneComplex"
+version = v"9.22.1"
 Champions = Dict{Int,NamedTuple}(
     266 => (version = "9.22.1", id = "Aatrox", key = "266", name = "Aatrox", title = "the Darkin Blade", blurb = "Once honored defenders of Shurima against the Void, Aatrox and his brethren would eventually become an even greater threat to Runeterra, and were defeated only by cunning mortal sorcery. But after centuries of imprisonment, Aatrox was the first to find...", info = (attack = 8, defense = 4, magic = 3, difficulty = 4), image = (full = "Aatrox.png", sprite = "champion0.png", group = "champion", x = 0, y = 0, w = 48, h = 48), tags = Any["Fighter", "Tank"], partype = "Blood Well", stats = (hp = 580, hpperlevel = 90, mp = 0, mpperlevel = 0, movespeed = 345, armor = 38, armorperlevel = 3.25, spellblock = 32.1, spellblockperlevel = 1.25, attackrange = 175, hpregen = 3, hpregenperlevel = 1, mpregen = 0, mpregenperlevel = 0, crit = 0, critperlevel = 0, attackdamage = 60, attackdamageperlevel = 5, attackspeedperlevel = 2.5, attackspeed = 0.651)),
     103 => (version = "9.22.1", id = "Ahri", key = "103", name = "Ahri", title = "the Nine-Tailed Fox", blurb = "Innately connected to the latent power of Runeterra, Ahri is a vastaya who can reshape magic into orbs of raw energy. She revels in toying with her prey by manipulating their emotions before devouring their life essence. Despite her predatory nature...", info = (attack = 3, defense = 4, magic = 8, difficulty = 5), image = (full = "Ahri.png", sprite = "champion0.png", group = "champion", x = 48, y = 0, w = 48, h = 48), tags = Any["Mage", "Assassin"], partype = "Mana", stats = (hp = 526, hpperlevel = 92, mp = 418, mpperlevel = 25, movespeed = 330, armor = 20.88, armorperlevel = 3.5, spellblock = 30, spellblockperlevel = 0.5, attackrange = 550, hpregen = 6.5, hpregenperlevel = 0.6, mpregen = 8, mpregenperlevel = 0.8, crit = 0, critperlevel = 0, attackdamage = 53.04, attackdamageperlevel = 3, attackspeedperlevel = 2, attackspeed = 0.668)),

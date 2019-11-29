@@ -3,6 +3,8 @@ module test_loltools_datadragon
 using Test
 using LOLTools.DataDragon
 
+@test DataDragon.version == v"9.22.1"
+
 champ = DataDragon.Champions[126]
 @test champ.name == "Jayce"
 

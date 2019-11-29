@@ -1,9 +1,8 @@
 # LOLTools.jl
 
-|  **Build Status**                                                |
-|:----------------------------------------------------------------:|
-|  [![][travis-img]][travis-url]  [![][codecov-img]][codecov-url]  |
-
+|  **Build Status**                |
+|:---------------------------------|
+|  [![][actions-img]][actions-url] |
 
 https://developer.riotgames.com/apis
 
@@ -53,8 +52,5 @@ league = LeagueV4.by_queue(api_key, region, "RANKED_SOLO_5x5")
 ```
 
 
-[travis-img]: https://api.travis-ci.org/wookay/LOLTools.jl.svg?branch=master
-[travis-url]: https://travis-ci.org/wookay/LOLTools.jl
-
-[codecov-img]: https://codecov.io/gh/wookay/LOLTools.jl/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/wookay/LOLTools.jl/branch/master
+[actions-img]: https://github.com/wookay/LOLTools.jl/workflows/CI/badge.svg
+[actions-url]: https://github.com/wookay/LOLTools.jl/actions
