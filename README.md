@@ -51,6 +51,18 @@ league = LeagueV4.by_queue(api_key, region, "RANKED_SOLO_5x5")
 @info sort(league.entries, by = x -> x.leaguePoints)
 ```
 
+### DataDragon
+
+```julia
+using LOLTools.DataDragon
+
+champ = DataDragon.en_US.Champions[114]
+@info champ.name == "Fiora"
+
+champ = DataDragon.ko_KR.Champions[114]
+@info champ.name == "피오라"
+```
+
 
 [actions-img]: https://github.com/wookay/LOLTools.jl/workflows/CI/badge.svg
 [actions-url]: https://github.com/wookay/LOLTools.jl/actions
