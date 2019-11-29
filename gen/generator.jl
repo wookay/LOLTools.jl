@@ -1,7 +1,7 @@
 using JSON2
 
-# https://developer.riotgames.com/docs/lol
-# wget http://ddragon.leagueoflegends.com/cdn/9.22.1/data/en_US/champion.json
+# https://developer.riotgames.com/docs/lol#data-dragon
+# wget http://ddragon.leagueoflegends.com/cdn/9.23.1/data/en_US/champion.json
 
 nt = JSON2.read(read(normpath(@__DIR__, "champion.json"), String))
 
