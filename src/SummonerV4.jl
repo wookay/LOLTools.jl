@@ -19,7 +19,8 @@ function summoner_by_name(api_key::String,
                           summonerName::String ;
                           endpoint::HTTP.URI = lol_api_server(region),
                           action::Function = http_action)::SummonerDTO
-    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/by-name/$summonerName")
+    escapedSummonerName = HTTP.escapeuri(summonerName)
+    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/by-name/$escapedSummonerName")
 end
 
 function summoner_by_id(api_key::String,
