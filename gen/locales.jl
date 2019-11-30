@@ -3,5 +3,6 @@ type = "champion"
 format = "standAloneComplex"
 version = v"9.23.1"
 for locale in ("en_US", "ko_KR")
-    include(normpath(@__DIR__, locale, "data.jl"))
+    gendir = normpath(@__DIR__, "9.23.1", "generated", locale)
+    include(normpath(gendir, "module.jl"))
 end

@@ -1,7 +1,5 @@
 module DataDragon # LOLTools
 
-export Champions
-
-include(normpath(@__DIR__, "..", "gen", "Champions.jl"))
+include(normpath(@__DIR__, "..", "gen", "locales.jl"))
 
 end # module LOLTools.DataDragon

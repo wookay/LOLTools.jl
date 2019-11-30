@@ -5,22 +5,20 @@ using LOLTools.DataDragon
 
 @test DataDragon.version == v"9.23.1"
 
-champ = DataDragon.en_US.Champions[126]
-@test champ.name == "Jayce"
-
-champ = DataDragon.en_US.Champions[13]
-@test champ.name == "Ryze"
-
 champ = DataDragon.en_US.Champions[114]
 @test champ.name == "Fiora"
-
-champ = DataDragon.ko_KR.Champions[126]
-@test champ.name == "제이스"
-
-champ = DataDragon.ko_KR.Champions[13]
-@test champ.name == "라이즈"
+spell = DataDragon.en_US.Spells[12]
+@test spell.name == "Teleport"
+item = DataDragon.en_US.Items["Mercury's Treads"]
+@test item.gold == (base = 350, purchasable = true, total = 1100, sell = 770)
+@test item.stats == (FlatMovementSpeedMod = 45, FlatSpellBlockMod = 25)
 
 champ = DataDragon.ko_KR.Champions[114]
 @test champ.name == "피오라"
+spell = DataDragon.ko_KR.Spells[12]
+@test spell.name == "순간이동"
+item = DataDragon.ko_KR.Items["헤르메스의 발걸음"]
+@test item.gold == (base = 350, purchasable = true, total = 1100, sell = 770)
+@test item.stats == (FlatMovementSpeedMod = 45, FlatSpellBlockMod = 25)
 
 end # module test_loltools_datadragon
