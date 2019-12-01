@@ -14,6 +14,22 @@ struct SummonerDTO <: AbstractDTO
     SummonerDTO(profileIconId, name, puuid, summonerLevel, revisionDate, id, accountId) = new(profileIconId, name, puuid, summonerLevel, revisionDate, id, accountId)
 end
 
+function summoner_by_account(api_key::String,
+                             region::String,
+                             encryptedAccountId::String ;
+                             endpoint::HTTP.URI = lol_api_server(region),
+                             action::Function = http_action)::SummonerDTO
+    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/by-account/$encryptedAccountId")
+end
+
+function summoner_by_puuid(api_key::String,
+                           region::String,
+                           encryptedPUUID::String ;
+                           endpoint::HTTP.URI = lol_api_server(region),
+                           action::Function = http_action)::SummonerDTO
+    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/by-puuid/$encryptedPUUID")
+end
+
 function summoner_by_name(api_key::String,
                           region::String,
                           summonerName::String ;

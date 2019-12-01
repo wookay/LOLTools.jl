@@ -23,6 +23,9 @@ function call_api(::Type{T}, api_key::String, action::Function, endpoint::HTTP.U
     data = JSON2.read(IOBuffer(resp.body))
     if Symbol(T.name) === :Array
         first(T.parameters).(data)
+    elseif Symbol(T.name) === :Set
+        P = first(T.parameters)
+        Set{P}(P.(data))
     else
         T(data)
     end
