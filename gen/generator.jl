@@ -11,6 +11,7 @@ datadir = normpath(rootdir, "data", locale)
 path = normpath(datadir, "champion.json")
 nt = JSON2.read(read(path, String))
 jl = normpath(@__DIR__, "locales.jl")
+@info relpath(jl, @__DIR__)
 f = open(jl, "w")
 write(f, "# generated\n")
 write(f, "type = ", repr(nt.type), "\n")
@@ -23,13 +24,13 @@ for locale in $(repr(locales))
 end
 """)
 close(f)
-@info jl
 
 for locale in locales
     datadir = normpath(rootdir, "data", locale)
     gendir = normpath(@__DIR__, data_version, "generated", locale)
     !isdir(gendir) && mkpath(gendir)
     jl = normpath(gendir, "module.jl")
+    @info relpath(jl, @__DIR__)
     f = open(jl, "w")
     write(f, """
     # generated
@@ -42,11 +43,11 @@ for locale in locales
     end
     write(f, "end # module LOLTools.DataDragon.$locale\n")
     close(f)
-    @info jl
     for (k, v) in pairs(resources)
         path = normpath(datadir, string(k, ".json"))
         jl = normpath(gendir, string(k, ".jl"))
         nt = JSON2.read(read(path, String))
+        @info relpath(jl, @__DIR__)
         f = open(jl, "w")
         write(f, "# generated\n")
         if k in (:champion, :summoner)
@@ -57,15 +58,15 @@ for locale in locales
             end
             write(f, ")\n")
         elseif k === :item
-            write(f, "$v = Dict{String,NamedTuple}(\n")
-            for c in nt.data
+            write(f, "$v = Dict{Int,NamedTuple}(\n")
+            for (sym, c) in pairs(nt.data)
                 maps = Dict(pairs(c.maps)...)
                 d = merge(c, (maps=maps,))
-                write(f, repeat(' ', 4), repr(c.name => d), ",\n")
+                n = parse(Int, String(sym))
+                write(f, repeat(' ', 4), repr(n => d), ",\n")
             end
             write(f, ")\n")
         end
         close(f)
-        @info jl
     end
 end
