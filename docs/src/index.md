@@ -1,5 +1,7 @@
 # LOLTools.jl
 
+<https://github.com/wookay/LOLTools.jl>
+
 ### info
  * Riot Developer Portal :  <https://developer.riotgames.com/apis>
  * To get the `RIOT_TOKEN` :  <https://developer.riotgames.com/docs/portal#web-apis>
