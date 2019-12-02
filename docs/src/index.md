@@ -1,9 +1,5 @@
 # LOLTools.jl
 
-|  **Documentation**                        |  **Build Status**                  |
-|:------------------------------------------|------------------------------------|
-|  [![][docs-latest-img]][docs-latest-url]  |   [![][actions-img]][actions-url]  |
-
 ### info
  * Riot Developer Portal :  <https://developer.riotgames.com/apis>
  * To get the `RIOT_TOKEN` :  <https://developer.riotgames.com/docs/portal#web-apis>
@@ -63,13 +59,6 @@ champ = DataDragon.en_US.Champions[114]
 champ = DataDragon.ko_KR.Champions[114]
 @info champ.name == "피오라"
 ```
-
-
-[docs-latest-img]: https://img.shields.io/badge/docs-latest-blue.svg
-[docs-latest-url]: https://wookay.github.io/docs/LOLTools.jl/
-
-[actions-img]: https://github.com/wookay/LOLTools.jl/workflows/CI/badge.svg
-[actions-url]: https://github.com/wookay/LOLTools.jl/actions
 
 
 *LOLTools.jl* isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends.

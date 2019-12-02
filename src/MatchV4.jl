@@ -36,6 +36,13 @@ struct MatchTimelineDto <: AbstractDTO
     MatchTimelineDto(frames, frameInterval) = new(frames, frameInterval)
 end
 
+"""
+         match_by_tournament_code(api_key::String,
+                                  region::String,
+                                  tournamentCode::String ;
+                                  endpoint::HTTP.URI = lol_api_server(region),
+                                  action::Function = http_action)::MatchDTO
+"""
 function match_by_tournament_code(api_key::String,
                                   region::String,
                                   tournamentCode::String ;
@@ -44,6 +51,13 @@ function match_by_tournament_code(api_key::String,
     call_api(MatchDTO, api_key, action, endpoint, "/lol/match/v4/matches/by-tournament-code/$tournamentCode/ids")
 end
 
+"""
+         match_by_id(api_key::String,
+                     region::String,
+                     matchId::Int64 ;
+                     endpoint::HTTP.URI = lol_api_server(region),
+                     action::Function = http_action)::MatchDTO
+"""
 function match_by_id(api_key::String,
                      region::String,
                      matchId::Int64 ;
@@ -52,6 +66,13 @@ function match_by_id(api_key::String,
     call_api(MatchDTO, api_key, action, endpoint, "/lol/match/v4/matches/$matchId")
 end
 
+"""
+         matchlists(api_key::String,
+                    region::String,
+                    encryptedAccountId::String ;
+                    endpoint::HTTP.URI = lol_api_server(region),
+                    action::Function = http_action)::MatchlistDto
+"""
 function matchlists(api_key::String,
                     region::String,
                     encryptedAccountId::String ;
@@ -60,6 +81,13 @@ function matchlists(api_key::String,
     call_api(MatchlistDto, api_key, action, endpoint, "/lol/match/v4/matchlists/by-account/$encryptedAccountId")
 end
 
+"""
+         timelines(api_key::String,
+                   region::String,
+                   matchId::Int64 ;
+                   endpoint::HTTP.URI = lol_api_server(region),
+                   action::Function = http_action)::MatchTimelineDto
+"""
 function timelines(api_key::String,
                    region::String,
                    matchId::Int64 ;

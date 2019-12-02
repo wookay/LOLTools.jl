@@ -24,6 +24,12 @@ struct CurrentGameInfo <: AbstractDTO
     CurrentGameInfo(gameId, gameStartTime, platformId, gameMode, mapId, gameType, bannedChampions, observers, participants, gameLength, gameQueueConfigId) = new(gameId, gameStartTime, platformId, gameMode, mapId, gameType, bannedChampions, observers, participants, gameLength, gameQueueConfigId)
 end
 
+"""
+         featured_games(api_key::String,
+                        region::String ;
+                        endpoint::HTTP.URI = lol_api_server(region),
+                        action::Function = http_action)::FeaturedGames
+"""
 function featured_games(api_key::String,
                         region::String ;
                         endpoint::HTTP.URI = lol_api_server(region),
@@ -31,6 +37,13 @@ function featured_games(api_key::String,
     call_api(FeaturedGames, api_key, action, endpoint, "/lol/spectator/v4/featured-games")
 end
 
+"""
+         active_games(api_key::String,
+                      region::String,
+                      encryptedSummonerId::String ;
+                      endpoint::HTTP.URI = lol_api_server(region),
+                      action::Function = http_action)::CurrentGameInfo
+"""
 function active_games(api_key::String,
                       region::String,
                       encryptedSummonerId::String ;
