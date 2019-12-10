@@ -20,4 +20,7 @@ include("ChampionMasteryV4.jl")
 export DataDragon
 include("DataDragon.jl")
 
+export GameClient
+include("GameClient.jl")
+
 end # module LOLTools

@@ -57,3 +57,17 @@ SummonerV4.summoner_by_id
 
 * `DataDragon.en_US`
 * `DataDragon.ko_KR`
+
+# GameClient
+
+* <https://developer.riotgames.com/docs/lol#game-client>
+
+```@docs
+GameClient.replay_game
+GameClient.replay_playback
+GameClient.replay_render
+GameClient.replay_recording
+GameClient.replay_sequence
+GameClient.swagger_v2_swagger
+GameClient.swagger_v3_openapi
+```

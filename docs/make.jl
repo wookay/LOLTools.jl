@@ -10,6 +10,7 @@ makedocs(
                LOLTools.SpectatorV4,
                LOLTools.SummonerV4,
                LOLTools.DataDragon,
+               LOLTools.GameClient,
               ],
     clean = false,
     format = Documenter.HTML(
