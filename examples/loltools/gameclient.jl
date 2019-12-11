@@ -4,6 +4,8 @@ using .GameClient: lol_replay_server
 endpoint = lol_replay_server(host="192.168.0.9")
 game = GameClient.replay_game(; endpoint=endpoint)
 @info :game game
+# particles = GameClient.replay_particles(; endpoint=endpoint)
+# @info :particles (keys(particles)[1:3], getfield.(Ref(particles), keys(particles)[1:3]))
 playback = GameClient.replay_playback(; endpoint=endpoint)
 @info :playback playback
 render = GameClient.replay_render(; endpoint=endpoint)
