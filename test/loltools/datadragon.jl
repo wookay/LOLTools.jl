@@ -3,7 +3,7 @@ module test_loltools_datadragon
 using Test
 using LOLTools.DataDragon
 
-@test DataDragon.version == v"9.23.1"
+@test DataDragon.version >= v"9.24.1"
 
 champ = DataDragon.en_US.Champions[114]
 @test champ.name == "Fiora"
