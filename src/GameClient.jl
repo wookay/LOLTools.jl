@@ -51,6 +51,11 @@ function replay_particles( ;
     data = call_api(endpoint, action, "/replay/particles")
 end
 
+"""
+         replay_particles(particles ;
+                          endpoint::HTTP.URI = lol_replay_server(),
+                          action::Function = http_action)
+"""
 function replay_particles(particles ;
                           endpoint::HTTP.URI = lol_replay_server(),
                           action::Function = http_action)
@@ -68,6 +73,11 @@ function replay_playback( ;
     data = call_api(endpoint, action, "/replay/playback")
 end
 
+"""
+         replay_playback(playback ;
+                         endpoint::HTTP.URI = lol_replay_server(),
+                         action::Function = http_action)
+"""
 function replay_playback(playback ;
                          endpoint::HTTP.URI = lol_replay_server(),
                          action::Function = http_action)
@@ -85,6 +95,11 @@ function replay_render( ;
     data = call_api(endpoint, action, "/replay/render")
 end
 
+"""
+         replay_render(render ;
+                       endpoint::HTTP.URI = lol_replay_server(),
+                       action::Function = http_action)
+"""
 function replay_render(render ;
                        endpoint::HTTP.URI = lol_replay_server(),
                        action::Function = http_action)
@@ -102,6 +117,11 @@ function replay_recording( ;
     data = call_api(endpoint, action, "/replay/recording")
 end
 
+"""
+         replay_recording(recording ;
+                          endpoint::HTTP.URI = lol_replay_server(),
+                          action::Function = http_action)
+"""
 function replay_recording(recording ;
                           endpoint::HTTP.URI = lol_replay_server(),
                           action::Function = http_action)
@@ -119,9 +139,14 @@ function replay_sequence( ;
     data = call_api(endpoint, action, "/replay/sequence")
 end
 
+"""
+         replay_sequence(sequence ;
+                         endpoint::HTTP.URI = lol_replay_server(),
+                         action::Function = http_action)
+"""
 function replay_sequence(sequence ;
-                              endpoint::HTTP.URI = lol_replay_server(),
-                              action::Function = http_action)
+                         endpoint::HTTP.URI = lol_replay_server(),
+                         action::Function = http_action)
     data = call_api(endpoint, action, "/replay/sequence", sequence)
 end
 

@@ -64,6 +64,7 @@ SummonerV4.summoner_by_id
 
 ```@docs
 GameClient.replay_game
+GameClient.replay_particles
 GameClient.replay_playback
 GameClient.replay_render
 GameClient.replay_recording
