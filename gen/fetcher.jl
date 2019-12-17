@@ -10,6 +10,9 @@ for locale in locales
     for (k, v) in pairs(resources)
         path = normpath(datadir, string(k, ".json"))
         url = "http://ddragon.leagueoflegends.com/cdn/$data_version/data/$locale/$k.json"
-        !isfile(path) && @info(download(url, path))
+        if !isfile(path)
+            @info relpath(path, @__DIR__)
+            download(url, path)
+        end
     end
 end
