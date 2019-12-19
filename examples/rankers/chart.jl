@@ -5,7 +5,7 @@ using LOLTools: SummonerV4, LeagueV4, http_action
 api_key = get(ENV, "RIOT_TOKEN", "")
 region = "kr"
 
-read_from_file = true # false
+read_from_file = !("u" in ARGS) # true # false
 queue = "RANKED_SOLO_5x5"
 
 get_ranking(::typeof(LeagueV4.challengerleagues), idx) = idx
@@ -22,14 +22,16 @@ for league_func in (LeagueV4.challengerleagues, LeagueV4.grandmasterleagues, Lea
 end
 
 chart = []
-for player in players([DRX, FA], [Top, Jungle, Mid, ADC, Support])
-    for summonerName in summonersof(player)
+for player in players([DRX, FA], [Top, Jungle, Middle, ADC, Support])
+    for summoner in summonersof(player)
+        summonerName = summoner.name
         if !haskey(rankers, summonerName)
-            summoner = SummonerV4.summoner_by_name(api_key, region, summonerName; action=store_with(region, http_action, debug=true))
-            encryptedSummonerId = summoner.id
-            entries = LeagueV4.entries_by_summoner_id(api_key, region, encryptedSummonerId; action=update_with(region, http_action, read_from_file=read_from_file, debug=true))
+            summonerdto = SummonerV4.summoner_by_name(api_key, summoner.region, summoner.name; action=store_with(region, http_action, debug=true))
+            encryptedSummonerId = summonerdto.id
+            entries = LeagueV4.entries_by_summoner_id(api_key, summoner.region, encryptedSummonerId; action=update_with(summoner.region, http_action, read_from_file=read_from_file, debug=true))
             for entry in entries
                 rankers[entry.summonerName] = (string(entry.tier, ' ', entry.rank), entry.leaguePoints)
+                summonerName = entry.summonerName
             end
         end
         ranker = rankers[summonerName]

@@ -1,5 +1,5 @@
 using Rankers.Storages # store_with
-using LOLTools.MatchV4: MatchV4, http_action
+using LOLTools: MatchV4, http_action
 using LOLTools.DataDragon: en_US, ko_KR
 
 api_key = get(ENV, "RIOT_TOKEN", "")
