@@ -46,7 +46,6 @@ MatchV4.timelines
 ```@docs
 SpectatorV4.featured_games
 SpectatorV4.active_games
-SpectatorV4.observer_mode_rest_featured
 ```
 
 # SummonerV4
