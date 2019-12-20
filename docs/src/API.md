@@ -20,6 +20,14 @@ LeagueV4.entries_by_summoner_id
 LeagueV4.entries_by_queue_tier_division
 ```
 
+# LeagueExpV4
+
+* <https://developer.riotgames.com/apis#league-exp-v4>
+
+```@docs
+LeagueExpV4.entries_by_queue_tier_division
+```
+
 # MatchV4
 
 * <https://developer.riotgames.com/apis#match-v4>
@@ -38,6 +46,7 @@ MatchV4.timelines
 ```@docs
 SpectatorV4.featured_games
 SpectatorV4.active_games
+SpectatorV4.observer_mode_rest_featured
 ```
 
 # SummonerV4

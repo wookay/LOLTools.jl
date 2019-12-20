@@ -14,6 +14,9 @@ include("SpectatorV4.jl")
 export LeagueV4
 include("LeagueV4.jl")
 
+export LeagueExpV4
+include("LeagueExpV4.jl")
+
 export ChampionMasteryV4
 include("ChampionMasteryV4.jl")
 

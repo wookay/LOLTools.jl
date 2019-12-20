@@ -52,4 +52,15 @@ function active_games(api_key::String,
     call_api(CurrentGameInfo, api_key, action, endpoint, "/lol/spectator/v4/active-games/by-summoner/$encryptedSummonerId")
 end
 
+"""
+         observer_mode_rest_featured(region::String ;
+                                     endpoint::HTTP.URI = HTTP.URI(string("http://spectator.", region, ".lol.riotgames.com")),
+                                     action::Function = http_action)::FeaturedGames
+"""
+function observer_mode_rest_featured(region::String ;
+                                     endpoint::HTTP.URI = HTTP.URI(string("http://spectator.", region, ".lol.riotgames.com")),
+                                     action::Function = http_action)::FeaturedGames
+    call_api(FeaturedGames, "", action, endpoint, "/observer-mode/rest/featured")
+end
+
 end # module LOLTools.SpectatorV4

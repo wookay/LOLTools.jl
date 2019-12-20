@@ -96,6 +96,7 @@ end
                                         queue::String,
                                         tier::String,
                                         division::String ;
+                                        page::Int = 1,
                                         endpoint::HTTP.URI = lol_api_server(region),
                                         action::Function = http_action)::Set{LeagueEntryDTO}
 """
@@ -104,9 +105,11 @@ function entries_by_queue_tier_division(api_key::String,
                                         queue::String,
                                         tier::String,
                                         division::String ;
+                                        page::Int = 1,
                                         endpoint::HTTP.URI = lol_api_server(region),
                                         action::Function = http_action)::Set{LeagueEntryDTO}
-    call_api(Set{LeagueEntryDTO}, api_key, action, endpoint, "/lol/league/v4/entries/$queue/$tier/$division")
+    path = string(merge(HTTP.URI(path="/lol/league/v4/entries/$queue/$tier/$division"), query=HTTP.escapeuri("page", page)))
+    call_api(Set{LeagueEntryDTO}, api_key, action, endpoint, path)
 end
 
 end # module LOLTools.LeagueV4
