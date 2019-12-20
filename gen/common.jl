@@ -3,4 +3,4 @@
 
 data_version = "9.24.2"
 locales = ("en_US", "ko_KR")
-resources = (champion=:Champions, summoner=:Spells, item=:Items)
+resources = (champion=:Champions, item=:Items, summoner=:SummonerSpells)

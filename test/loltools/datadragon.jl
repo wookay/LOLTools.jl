@@ -7,7 +7,7 @@ using LOLTools.DataDragon
 
 champ = DataDragon.en_US.Champions[114]
 @test champ.name == "Fiora"
-spell = DataDragon.en_US.Spells[12]
+spell = DataDragon.en_US.SummonerSpells[12]
 @test spell.name == "Teleport"
 item = DataDragon.en_US.Items[3111]
 @test item.name == "Mercury's Treads"
@@ -16,7 +16,7 @@ item = DataDragon.en_US.Items[3111]
 
 champ = DataDragon.ko_KR.Champions[114]
 @test champ.name == "피오라"
-spell = DataDragon.ko_KR.Spells[12]
+spell = DataDragon.ko_KR.SummonerSpells[12]
 @test spell.name == "순간이동"
 item = DataDragon.ko_KR.Items[3111]
 @test item.name == "헤르메스의 발걸음"
