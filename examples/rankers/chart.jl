@@ -1,6 +1,7 @@
 using Rankers.Storages
 using Rankers.ProTeams
 using LOLTools: SummonerV4, LeagueV4, http_action
+using Rankers: Chart
 
 api_key = get(ENV, "RIOT_TOKEN", "")
 region = "kr"
@@ -15,8 +16,7 @@ get_ranking(::typeof(LeagueV4.masterleagues), idx) = 1000+idx
 rankers = Dict{String,Tuple{Union{Int,String},Int}}()
 for league_func in (LeagueV4.challengerleagues, LeagueV4.grandmasterleagues, LeagueV4.masterleagues)
     league = league_func(api_key, region, queue; action=update_with(region, http_action, read_from_file=read_from_file, debug=true))
-    entries = sort(league.entries, by = x -> x.leaguePoints, rev=true)
-    for (idx, entry) in enumerate(entries)
+    for (idx, entry) in enumerate(Chart.entries(league))
         rankers[entry.summonerName] = (get_ranking(league_func, idx), entry.leaguePoints)
     end
 end

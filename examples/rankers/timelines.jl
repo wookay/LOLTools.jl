@@ -10,4 +10,7 @@ frame = timelines.frames[end]
 frame_par = frame.participantFrames[9]
 @info frame_par
 @info frame.events
-@info frame.timestamp
+@info :timestamp frame.timestamp
+@info :frameInterval timelines.frameInterval
+using Dates
+@info Time(Nanosecond(Millisecond(frame.timestamp - timelines.frameInterval)))

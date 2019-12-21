@@ -11,3 +11,6 @@ stats = match.participants[7].stats
 f(d, k) = iszero(k) ? nothing : getindex(d, k).name
 # (println ∘ f).(Ref(en_US.Items), [stats.item0, stats.item1, stats.item2, stats.item3, stats.item4, stats.item5, stats.item6])
 (println ∘ f).(Ref(ko_KR.Items), [stats.item0, stats.item1, stats.item2, stats.item3, stats.item4, stats.item5, stats.item6])
+using Calendars.Times
+@info :gameDuration Time(Nanosecond(Second(match.gameDuration)))
+@info :gameCreation millisecond2datetime(match.gameCreation)
