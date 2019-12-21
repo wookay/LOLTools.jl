@@ -20,6 +20,12 @@ include("LeagueExpV4.jl")
 export ChampionMasteryV4
 include("ChampionMasteryV4.jl")
 
+export ChampionV3
+include("ChampionV3.jl")
+
+export LoLStatusV3
+include("LoLStatusV3.jl")
+
 export DataDragon
 include("DataDragon.jl")
 

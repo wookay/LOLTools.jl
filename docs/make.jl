@@ -5,6 +5,8 @@ makedocs(
     build = joinpath(@__DIR__, "local" in ARGS ? "build_local" : "build"),
     modules = [LOLTools,
                LOLTools.ChampionMasteryV4,
+               LOLTools.ChampionV3,
+               LOLTools.LoLStatusV3,
                LOLTools.LeagueV4,
                LOLTools.MatchV4,
                LOLTools.SpectatorV4,

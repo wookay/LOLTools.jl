@@ -8,6 +8,22 @@
 ChampionMasteryV4.by_summoner_id
 ```
 
+# ChampionV3
+
+* <https://developer.riotgames.com/apis#champion-v3>
+
+```@docs
+ChampionV3.champion_rotations
+```
+
+# LoLStatusV3
+
+* <https://developer.riotgames.com/apis#lol-status-v3>
+
+```@docs
+LoLStatusV3.shard_data
+```
+
 # LeagueV4
 
 * <https://developer.riotgames.com/apis#league-v4>
