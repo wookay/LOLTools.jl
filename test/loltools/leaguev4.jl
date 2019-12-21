@@ -11,7 +11,7 @@ end
 
 function challengerleagues(c::LeagueController)
     # @info :c c.params.entries
-    render(JSON, (a=1,))
+    render(JSON, (leagueId="", tier="CHALLENGER", entries=[(summonerId = "", summonerName = "", leaguePoints = 0, rank = "I", wins = 0, losses = 0, veteran = false, inactive = false, freshBlood = true, hotStreak = false)], queue="RANKED_SOLO_5x5", name="Nautilus's Outriders"))
 end
 
 routes() do

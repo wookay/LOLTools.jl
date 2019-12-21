@@ -6,7 +6,7 @@ using HTTP
 struct LeagueListDTO <: AbstractDTO
     leagueId
     tier
-    entries
+    entries::Vector{NamedTuple{(:summonerId, :summonerName, :leaguePoints, :rank, :wins, :losses, :veteran, :inactive, :freshBlood, :hotStreak)}}
     queue
     name
     LeagueListDTO(leagueId, tier, entries, queue, name) = new(leagueId, tier, entries, queue, name)

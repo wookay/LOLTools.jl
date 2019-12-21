@@ -7,14 +7,14 @@ struct MatchDTO <: AbstractDTO
     seasonId
     queueId
     gameId
-    participantIdentities
+    participantIdentities::Vector{NamedTuple{(:participantId, :player), Tuple{Int,NamedTuple{(:platformId, :accountId, :summonerName, :summonerId, :currentPlatformId, :currentAccountId, :matchHistoryUri, :profileIcon)}}}}
     gameVersion
     platformId
     gameMode
     mapId
     gameType
     teams
-    participants
+    participants::Vector{NamedTuple{(:participantId, :teamId, :championId, :spell1Id, :spell2Id, :stats, :timeline)}}
     gameDuration
     gameCreation
     MatchDTO(seasonId, queueId, gameId, participantIdentities, gameVersion, platformId, gameMode, mapId, gameType, teams, participants, gameDuration, gameCreation) = new(seasonId, queueId, gameId, participantIdentities, gameVersion, platformId, gameMode, mapId, gameType, teams, participants, gameDuration, gameCreation)
@@ -23,7 +23,7 @@ end
 const MatchReferenceDto = Tuple{(:platformId, :gameId, :champion, :queue, :season, :timestamp, :role, :lane)}
 
 struct MatchlistDto <: AbstractDTO
-    matches # Vector{MatchReferenceDto}
+    matches::Vector{MatchReferenceDto}
     totalGames
     startIndex
     endIndex
