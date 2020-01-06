@@ -1,6 +1,6 @@
 module SpectatorV4 # LOLTools
 
-using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api
+using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api, nothing_in_event
 using HTTP
 
 struct FeaturedGames <: AbstractDTO
@@ -28,13 +28,15 @@ end
          featured_games(api_key::String,
                         region::String ;
                         endpoint::HTTP.URI = lol_api_server(region),
-                        action::Function = http_action)::FeaturedGames
+                        action::Function = http_action,
+                        event::Function = nothing_in_event)::FeaturedGames
 """
 function featured_games(api_key::String,
                         region::String ;
                         endpoint::HTTP.URI = lol_api_server(region),
-                        action::Function = http_action)::FeaturedGames
-    call_api(FeaturedGames, api_key, action, endpoint, "/lol/spectator/v4/featured-games")
+                        action::Function = http_action,
+                        event::Function = nothing_in_event)::FeaturedGames
+    call_api(FeaturedGames, api_key, action, endpoint, "/lol/spectator/v4/featured-games", event, featured_games)
 end
 
 """
@@ -42,14 +44,16 @@ end
                       region::String,
                       encryptedSummonerId::String ;
                       endpoint::HTTP.URI = lol_api_server(region),
-                      action::Function = http_action)::CurrentGameInfo
+                      action::Function = http_action,
+                      event::Function = nothing_in_event)::CurrentGameInfo
 """
 function active_games(api_key::String,
                       region::String,
                       encryptedSummonerId::String ;
                       endpoint::HTTP.URI = lol_api_server(region),
-                      action::Function = http_action)::CurrentGameInfo
-    call_api(CurrentGameInfo, api_key, action, endpoint, "/lol/spectator/v4/active-games/by-summoner/$encryptedSummonerId")
+                      action::Function = http_action,
+                      event::Function = nothing_in_event)::CurrentGameInfo
+    call_api(CurrentGameInfo, api_key, action, endpoint, "/lol/spectator/v4/active-games/by-summoner/$encryptedSummonerId", event, active_games)
 end
 
 end # module LOLTools.SpectatorV4

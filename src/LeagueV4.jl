@@ -1,6 +1,6 @@
 module LeagueV4 # LOLTools
 
-using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api
+using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api, nothing_in_event
 using HTTP
 
 struct LeagueListDTO <: AbstractDTO
@@ -35,14 +35,16 @@ end
                            region::String,
                            queue::String ;
                            endpoint::HTTP.URI = lol_api_server(region),
-                           action::Function = http_action)::LeagueListDTO
+                           action::Function = http_action,
+                           event::Function = nothing_in_event)::LeagueListDTO
 """
 function challengerleagues(api_key::String,
                            region::String,
                            queue::String ;
                            endpoint::HTTP.URI = lol_api_server(region),
-                           action::Function = http_action)::LeagueListDTO
-    call_api(LeagueListDTO, api_key, action, endpoint, "/lol/league/v4/challengerleagues/by-queue/$queue")
+                           action::Function = http_action,
+                           event::Function = nothing_in_event)::LeagueListDTO
+    call_api(LeagueListDTO, api_key, action, endpoint, "/lol/league/v4/challengerleagues/by-queue/$queue", event, challengerleagues)
 end
 
 """
@@ -50,14 +52,16 @@ end
                            region::String,
                            queue::String ;
                            endpoint::HTTP.URI = lol_api_server(region),
-                           action::Function = http_action)::LeagueListDTO
+                           action::Function = http_action,
+                           event::Function = nothing_in_event)::LeagueListDTO
 """
 function grandmasterleagues(api_key::String,
                            region::String,
                            queue::String ;
                            endpoint::HTTP.URI = lol_api_server(region),
-                           action::Function = http_action)::LeagueListDTO
-    call_api(LeagueListDTO, api_key, action, endpoint, "/lol/league/v4/grandmasterleagues/by-queue/$queue")
+                           action::Function = http_action,
+                           event::Function = nothing_in_event)::LeagueListDTO
+    call_api(LeagueListDTO, api_key, action, endpoint, "/lol/league/v4/grandmasterleagues/by-queue/$queue", event, grandmasterleagues)
 end
 
 """
@@ -65,14 +69,16 @@ end
                        region::String,
                        queue::String ;
                        endpoint::HTTP.URI = lol_api_server(region),
-                       action::Function = http_action)::LeagueListDTO
+                       action::Function = http_action,
+                       event::Function = nothing_in_event)::LeagueListDTO
 """
 function masterleagues(api_key::String,
                        region::String,
                        queue::String ;
                        endpoint::HTTP.URI = lol_api_server(region),
-                       action::Function = http_action)::LeagueListDTO
-    call_api(LeagueListDTO, api_key, action, endpoint, "/lol/league/v4/masterleagues/by-queue/$queue")
+                       action::Function = http_action,
+                       event::Function = nothing_in_event)::LeagueListDTO
+    call_api(LeagueListDTO, api_key, action, endpoint, "/lol/league/v4/masterleagues/by-queue/$queue", event, masterleagues)
 end
 
 """
@@ -80,14 +86,16 @@ end
                                 region::String,
                                 encryptedSummonerId::String ;
                                 endpoint::HTTP.URI = lol_api_server(region),
-                                action::Function = http_action)::Set{LeagueEntryDTO}
+                                action::Function = http_action,
+                                event::Function = nothing_in_event)::Set{LeagueEntryDTO}
 """
 function entries_by_summoner_id(api_key::String,
                                 region::String,
                                 encryptedSummonerId::String ;
                                 endpoint::HTTP.URI = lol_api_server(region),
-                                action::Function = http_action)::Set{LeagueEntryDTO}
-    call_api(Set{LeagueEntryDTO}, api_key, action, endpoint, "/lol/league/v4/entries/by-summoner/$encryptedSummonerId")
+                                action::Function = http_action,
+                                event::Function = nothing_in_event)::Set{LeagueEntryDTO}
+    call_api(Set{LeagueEntryDTO}, api_key, action, endpoint, "/lol/league/v4/entries/by-summoner/$encryptedSummonerId", event, entries_by_summoner_id)
 end
 
 """
@@ -98,7 +106,8 @@ end
                                         division::String ;
                                         page::Int = 1,
                                         endpoint::HTTP.URI = lol_api_server(region),
-                                        action::Function = http_action)::Set{LeagueEntryDTO}
+                                        action::Function = http_action,
+                                        event::Function = nothing_in_event)::Set{LeagueEntryDTO}
 """
 function entries_by_queue_tier_division(api_key::String,
                                         region::String,
@@ -107,9 +116,10 @@ function entries_by_queue_tier_division(api_key::String,
                                         division::String ;
                                         page::Int = 1,
                                         endpoint::HTTP.URI = lol_api_server(region),
-                                        action::Function = http_action)::Set{LeagueEntryDTO}
+                                        action::Function = http_action,
+                                        event::Function = nothing_in_event)::Set{LeagueEntryDTO}
     path = string(merge(HTTP.URI(path="/lol/league/v4/entries/$queue/$tier/$division"), query=HTTP.escapeuri("page", page)))
-    call_api(Set{LeagueEntryDTO}, api_key, action, endpoint, path)
+    call_api(Set{LeagueEntryDTO}, api_key, action, endpoint, path, event, entries_by_queue_tier_division)
 end
 
 end # module LOLTools.LeagueV4

@@ -1,6 +1,6 @@
 module SummonerV4 # LOLTools
 
-using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api
+using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api, nothing_in_event
 using HTTP
 
 struct SummonerDTO <: AbstractDTO
@@ -19,14 +19,16 @@ end
                              region::String,
                              encryptedAccountId::String ;
                              endpoint::HTTP.URI = lol_api_server(region),
-                             action::Function = http_action)::SummonerDTO
+                             action::Function = http_action,
+                             event::Function = nothing_in_event)::SummonerDTO
 """
 function summoner_by_account(api_key::String,
                              region::String,
                              encryptedAccountId::String ;
                              endpoint::HTTP.URI = lol_api_server(region),
-                             action::Function = http_action)::SummonerDTO
-    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/by-account/$encryptedAccountId")
+                             action::Function = http_action,
+                             event::Function = nothing_in_event)::SummonerDTO
+    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/by-account/$encryptedAccountId", event, summoner_by_account)
 end
 
 """
@@ -34,14 +36,16 @@ end
                            region::String,
                            encryptedPUUID::String ;
                            endpoint::HTTP.URI = lol_api_server(region),
-                           action::Function = http_action)::SummonerDTO
+                           action::Function = http_action,
+                           event::Function = nothing_in_event)::SummonerDTO
 """
 function summoner_by_puuid(api_key::String,
                            region::String,
                            encryptedPUUID::String ;
                            endpoint::HTTP.URI = lol_api_server(region),
-                           action::Function = http_action)::SummonerDTO
-    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/by-puuid/$encryptedPUUID")
+                           action::Function = http_action,
+                           event::Function = nothing_in_event)::SummonerDTO
+    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/by-puuid/$encryptedPUUID", event, summoner_by_puuid)
 end
 
 """
@@ -49,15 +53,17 @@ end
                           region::String,
                           summonerName::String ;
                           endpoint::HTTP.URI = lol_api_server(region),
-                          action::Function = http_action)::SummonerDTO
+                          action::Function = http_action,
+                          event::Function = nothing_in_event)::SummonerDTO
 """
 function summoner_by_name(api_key::String,
                           region::String,
                           summonerName::String ;
                           endpoint::HTTP.URI = lol_api_server(region),
-                          action::Function = http_action)::SummonerDTO
+                          action::Function = http_action,
+                          event::Function = nothing_in_event)::SummonerDTO
     escapedSummonerName = HTTP.escapeuri(summonerName)
-    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/by-name/$escapedSummonerName")
+    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/by-name/$escapedSummonerName", event, summoner_by_name)
 end
 
 """
@@ -65,14 +71,16 @@ end
                         region::String,
                         encryptedSummonerId::String ;
                         endpoint::HTTP.URI = lol_api_server(region),
-                        action::Function = http_action)::SummonerDTO
+                        action::Function = http_action,
+                        event::Function = nothing_in_event)::SummonerDTO
 """
 function summoner_by_id(api_key::String,
                         region::String,
                         encryptedSummonerId::String ;
                         endpoint::HTTP.URI = lol_api_server(region),
-                        action::Function = http_action)::SummonerDTO
-    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/$encryptedSummonerId")
+                        action::Function = http_action,
+                        event::Function = nothing_in_event)::SummonerDTO
+    call_api(SummonerDTO, api_key, action, endpoint, "/lol/summoner/v4/summoners/$encryptedSummonerId", event, summoner_by_id)
 end
 
 end # module LOLTools.SummonerV4

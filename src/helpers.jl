@@ -17,18 +17,24 @@ function http_action(endpoint::HTTP.URI, path::String, headers::Vector{Pair{Stri
     HTTP.get(url, headers; query=query)
 end
 
-function call_api(::Type{T}, api_key::String, action::Function, endpoint::HTTP.URI, path::String)::T where T
+function nothing_in_event(caller::Function, resp, result::Union{<:AbstractDTO, Array{<:AbstractDTO}, Set{<:AbstractDTO}})
+    nothing
+end
+
+function call_api(::Type{T}, api_key::String, action::Function, endpoint::HTTP.URI, path::String, event::Function, caller::Function)::T where T
     headers = ["X-Riot-Token" => api_key]
     resp = action(endpoint, path, headers)
     data = JSON2.read(IOBuffer(resp.body))
     if Symbol(T.name) === :Array
-        first(T.parameters).(data)
+        result = first(T.parameters).(data)
     elseif Symbol(T.name) === :Set
         P = first(T.parameters)
-        Set{P}(P.(data))
+        result = Set{P}(P.(data))
     else
-        T(data)
+        result = T(data)
     end
+    event(caller, resp, result)
+    result
 end
 
 # module LOLTools

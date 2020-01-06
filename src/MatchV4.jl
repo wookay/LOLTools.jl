@@ -1,6 +1,6 @@
 module MatchV4 # LOLTools
 
-using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api
+using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api, nothing_in_event
 using HTTP
 
 struct MatchDTO <: AbstractDTO
@@ -41,14 +41,16 @@ end
                                   region::String,
                                   tournamentCode::String ;
                                   endpoint::HTTP.URI = lol_api_server(region),
-                                  action::Function = http_action)::MatchDTO
+                                  action::Function = http_action,
+                                  event::Function = nothing_in_event)::MatchDTO
 """
 function match_by_tournament_code(api_key::String,
                                   region::String,
                                   tournamentCode::String ;
                                   endpoint::HTTP.URI = lol_api_server(region),
-                                  action::Function = http_action)::MatchDTO
-    call_api(MatchDTO, api_key, action, endpoint, "/lol/match/v4/matches/by-tournament-code/$tournamentCode/ids")
+                                  action::Function = http_action,
+                                  event::Function = nothing_in_event)::MatchDTO
+    call_api(MatchDTO, api_key, action, endpoint, "/lol/match/v4/matches/by-tournament-code/$tournamentCode/ids", event, match_by_tournament_code)
 end
 
 """
@@ -56,14 +58,16 @@ end
                      region::String,
                      matchId::Int64 ;
                      endpoint::HTTP.URI = lol_api_server(region),
-                     action::Function = http_action)::MatchDTO
+                     action::Function = http_action,
+                     event::Function = nothing_in_event)::MatchDTO
 """
 function match_by_id(api_key::String,
                      region::String,
                      matchId::Int64 ;
                      endpoint::HTTP.URI = lol_api_server(region),
-                     action::Function = http_action)::MatchDTO
-    call_api(MatchDTO, api_key, action, endpoint, "/lol/match/v4/matches/$matchId")
+                     action::Function = http_action,
+                     event::Function = nothing_in_event)::MatchDTO
+    call_api(MatchDTO, api_key, action, endpoint, "/lol/match/v4/matches/$matchId", event, match_by_id)
 end
 
 """
@@ -71,14 +75,16 @@ end
                     region::String,
                     encryptedAccountId::String ;
                     endpoint::HTTP.URI = lol_api_server(region),
-                    action::Function = http_action)::MatchlistDto
+                    action::Function = http_action,
+                    event::Function = nothing_in_event)::MatchlistDto
 """
 function matchlists(api_key::String,
                     region::String,
                     encryptedAccountId::String ;
                     endpoint::HTTP.URI = lol_api_server(region),
-                    action::Function = http_action)::MatchlistDto
-    call_api(MatchlistDto, api_key, action, endpoint, "/lol/match/v4/matchlists/by-account/$encryptedAccountId")
+                    action::Function = http_action,
+                    event::Function = nothing_in_event)::MatchlistDto
+    call_api(MatchlistDto, api_key, action, endpoint, "/lol/match/v4/matchlists/by-account/$encryptedAccountId", event, matchlists)
 end
 
 """
@@ -86,14 +92,16 @@ end
                    region::String,
                    matchId::Int64 ;
                    endpoint::HTTP.URI = lol_api_server(region),
-                   action::Function = http_action)::MatchTimelineDto
+                   action::Function = http_action,
+                   event::Function = nothing_in_event)::MatchTimelineDto
 """
 function timelines(api_key::String,
                    region::String,
                    matchId::Int64 ;
                    endpoint::HTTP.URI = lol_api_server(region),
-                   action::Function = http_action)::MatchTimelineDto
-    call_api(MatchTimelineDto, api_key, action, endpoint, "/lol/match/v4/timelines/by-match/$matchId")
+                   action::Function = http_action,
+                   event::Function = nothing_in_event)::MatchTimelineDto
+    call_api(MatchTimelineDto, api_key, action, endpoint, "/lol/match/v4/timelines/by-match/$matchId", event, timelines)
 end
 
 end # module LOLTools.MatchV4
