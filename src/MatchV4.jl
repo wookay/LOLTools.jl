@@ -20,20 +20,20 @@ struct MatchDTO <: AbstractDTO
     MatchDTO(seasonId, queueId, gameId, participantIdentities, gameVersion, platformId, gameMode, mapId, gameType, teams, participants, gameDuration, gameCreation) = new(seasonId, queueId, gameId, participantIdentities, gameVersion, platformId, gameMode, mapId, gameType, teams, participants, gameDuration, gameCreation)
 end
 
-const MatchReferenceDto = Tuple{(:platformId, :gameId, :champion, :queue, :season, :timestamp, :role, :lane)}
+const MatchReferenceDTO = NamedTuple{(:platformId, :gameId, :champion, :queue, :season, :timestamp, :role, :lane)}
 
-struct MatchlistDto <: AbstractDTO
-    matches::Vector{MatchReferenceDto}
+struct MatchlistDTO <: AbstractDTO
+    matches::Vector{MatchReferenceDTO}
     totalGames
     startIndex
     endIndex
-    MatchlistDto(matches, totalGames, startIndex, endIndex) = new(matches, totalGames, startIndex, endIndex)
+    MatchlistDTO(matches, totalGames, startIndex, endIndex) = new(matches, totalGames, startIndex, endIndex)
 end
 
-struct MatchTimelineDto <: AbstractDTO
+struct MatchTimelineDTO <: AbstractDTO
     frames
     frameInterval
-    MatchTimelineDto(frames, frameInterval) = new(frames, frameInterval)
+    MatchTimelineDTO(frames, frameInterval) = new(frames, frameInterval)
 end
 
 """
@@ -76,15 +76,15 @@ end
                     encryptedAccountId::String ;
                     endpoint::HTTP.URI = lol_api_server(region),
                     action::Function = http_action,
-                    event::Function = nothing_in_event)::MatchlistDto
+                    event::Function = nothing_in_event)::MatchlistDTO
 """
 function matchlists(api_key::String,
                     region::String,
                     encryptedAccountId::String ;
                     endpoint::HTTP.URI = lol_api_server(region),
                     action::Function = http_action,
-                    event::Function = nothing_in_event)::MatchlistDto
-    call_api(MatchlistDto, api_key, action, endpoint, "/lol/match/v4/matchlists/by-account/$encryptedAccountId", event, matchlists)
+                    event::Function = nothing_in_event)::MatchlistDTO
+    call_api(MatchlistDTO, api_key, action, endpoint, "/lol/match/v4/matchlists/by-account/$encryptedAccountId", event, matchlists)
 end
 
 """
@@ -93,15 +93,15 @@ end
                    matchId::Int64 ;
                    endpoint::HTTP.URI = lol_api_server(region),
                    action::Function = http_action,
-                   event::Function = nothing_in_event)::MatchTimelineDto
+                   event::Function = nothing_in_event)::MatchTimelineDTO
 """
 function timelines(api_key::String,
                    region::String,
                    matchId::Int64 ;
                    endpoint::HTTP.URI = lol_api_server(region),
                    action::Function = http_action,
-                   event::Function = nothing_in_event)::MatchTimelineDto
-    call_api(MatchTimelineDto, api_key, action, endpoint, "/lol/match/v4/timelines/by-match/$matchId", event, timelines)
+                   event::Function = nothing_in_event)::MatchTimelineDTO
+    call_api(MatchTimelineDTO, api_key, action, endpoint, "/lol/match/v4/timelines/by-match/$matchId", event, timelines)
 end
 
 end # module LOLTools.MatchV4
