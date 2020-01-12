@@ -21,9 +21,9 @@ function nothing_in_event(caller::Function, resp, result::Union{<:AbstractDTO, A
     nothing
 end
 
-function call_api(::Type{T}, api_key::String, action::Function, endpoint::HTTP.URI, path::String, event::Function, caller::Function)::T where T
+function call_api(::Type{T}, api_key::String, action::Function, endpoint::HTTP.URI, path::String, event::Function, caller::Function; query::Union{Nothing,Dict{String,String}}=nothing)::T where T
     headers = ["X-Riot-Token" => api_key]
-    resp = action(endpoint, path, headers)
+    resp = action(endpoint, path, headers, query)
     data = JSON2.read(IOBuffer(resp.body))
     if Symbol(T.name) === :Array
         result = first(T.parameters).(data)

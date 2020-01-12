@@ -76,15 +76,17 @@ end
                     encryptedAccountId::String ;
                     endpoint::HTTP.URI = lol_api_server(region),
                     action::Function = http_action,
-                    event::Function = nothing_in_event)::MatchlistDTO
+                    event::Function = nothing_in_event,
+                    query::Union{Nothing,Dict{String,String}} = nothing)::MatchlistDTO
 """
 function matchlists(api_key::String,
                     region::String,
                     encryptedAccountId::String ;
                     endpoint::HTTP.URI = lol_api_server(region),
                     action::Function = http_action,
-                    event::Function = nothing_in_event)::MatchlistDTO
-    call_api(MatchlistDTO, api_key, action, endpoint, "/lol/match/v4/matchlists/by-account/$encryptedAccountId", event, matchlists)
+                    event::Function = nothing_in_event,
+                    query::Union{Nothing,Dict{String,String}} = nothing)::MatchlistDTO
+    call_api(MatchlistDTO, api_key, action, endpoint, "/lol/match/v4/matchlists/by-account/$encryptedAccountId", event, matchlists; query=query)
 end
 
 """
