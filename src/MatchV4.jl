@@ -3,18 +3,22 @@ module MatchV4 # LOLTools
 using ..LOLTools: AbstractDTO, lol_api_server, http_action, call_api, nothing_in_event
 using HTTP
 
+const ParticipantIdentityDTO = NamedTuple{(:participantId, :player), Tuple{Int, NamedTuple{(:platformId, :accountId, :summonerName, :summonerId, :currentPlatformId, :currentAccountId, :matchHistoryUri, :profileIcon)}}}
+const TeamStatsDTO = NamedTuple{(:teamId, :win, :firstBlood, :firstTower, :firstInhibitor, :firstBaron, :firstDragon, :firstRiftHerald, :towerKills, :inhibitorKills, :baronKills, :dragonKills, :vilemawKills, :riftHeraldKills, :dominionVictoryScore, :bans)}
+const ParticipantDTO = NamedTuple{(:participantId, :teamId, :championId, :spell1Id, :spell2Id, :stats, :timeline)}
+
 struct MatchDTO <: AbstractDTO
     seasonId
     queueId
     gameId
-    participantIdentities::Vector{NamedTuple{(:participantId, :player), Tuple{Int,NamedTuple{(:platformId, :accountId, :summonerName, :summonerId, :currentPlatformId, :currentAccountId, :matchHistoryUri, :profileIcon)}}}}
+    participantIdentities::Vector{ParticipantIdentityDTO}
     gameVersion
     platformId
     gameMode
     mapId
     gameType
-    teams
-    participants::Vector{NamedTuple{(:participantId, :teamId, :championId, :spell1Id, :spell2Id, :stats, :timeline)}}
+    teams::Vector{TeamStatsDTO}
+    participants::Vector{ParticipantDTO}
     gameDuration
     gameCreation
     MatchDTO(seasonId, queueId, gameId, participantIdentities, gameVersion, platformId, gameMode, mapId, gameType, teams, participants, gameDuration, gameCreation) = new(seasonId, queueId, gameId, participantIdentities, gameVersion, platformId, gameMode, mapId, gameType, teams, participants, gameDuration, gameCreation)
@@ -30,8 +34,10 @@ struct MatchlistDTO <: AbstractDTO
     MatchlistDTO(matches, totalGames, startIndex, endIndex) = new(matches, totalGames, startIndex, endIndex)
 end
 
+const MatchFrameDTO = NamedTuple{(:participantFrames, :events, :timestamp)}
+
 struct MatchTimelineDTO <: AbstractDTO
-    frames
+    frames::Vector{MatchFrameDTO}
     frameInterval
     MatchTimelineDTO(frames, frameInterval) = new(frames, frameInterval)
 end
