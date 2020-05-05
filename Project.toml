@@ -19,4 +19,4 @@ test = ["Test", "Jive", "Bukdu"]
 julia = "1"
 HTTP = "0.8"
 JSON2 = "0.3"
-Bukdu = "0.4.8"
+Bukdu = "0.4"
