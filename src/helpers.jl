@@ -25,9 +25,9 @@ function call_api(::Type{T}, api_key::String, action::Function, endpoint::HTTP.U
     headers = ["X-Riot-Token" => api_key]
     resp = action(endpoint, path, headers, query)
     data = JSON2.read(IOBuffer(resp.body))
-    if Symbol(T.name) === :Array
+    if T <: Array
         result = first(T.parameters).(data)
-    elseif Symbol(T.name) === :Set
+    elseif T <: Set
         P = first(T.parameters)
         result = Set{P}(P.(data))
     else
