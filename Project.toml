@@ -1,7 +1,7 @@
 name = "LOLTools"
 uuid = "e2c437b3-d38f-4222-8753-dddcd5679a95"
 authors = ["WooKyoung Noh <wookay.noh@gmail.com>"]
-version = "0.1.2-DEV"
+version = "0.1.2"
 
 [deps]
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
