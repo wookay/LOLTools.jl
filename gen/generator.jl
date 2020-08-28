@@ -26,12 +26,12 @@ end
 close(f)
 
 for locale in locales
-    datadir = normpath(rootdir, "data", locale)
+    local datadir = normpath(rootdir, "data", locale)
     gendir = normpath(@__DIR__, data_version, "generated", locale)
     !isdir(gendir) && mkpath(gendir)
-    jl = normpath(gendir, "module.jl")
+    local jl = normpath(gendir, "module.jl")
     @info relpath(jl, @__DIR__)
-    f = open(jl, "w")
+    local f = open(jl, "w")
     write(f, """
     # generated
     module $locale # LOLTools.DataDragon
@@ -44,11 +44,11 @@ for locale in locales
     write(f, "end # module LOLTools.DataDragon.$locale\n")
     close(f)
     for (k, v) in pairs(resources)
-        path = normpath(datadir, string(k, ".json"))
-        jl = normpath(gendir, string(k, ".jl"))
-        nt = JSON2.read(read(path, String))
+        local path = normpath(datadir, string(k, ".json"))
+        local jl = normpath(gendir, string(k, ".jl"))
+        local nt = JSON2.read(read(path, String))
         @info relpath(jl, @__DIR__)
-        f = open(jl, "w")
+        local f = open(jl, "w")
         write(f, "# generated\n")
         if k in (:champion, :summoner)
             write(f, "$v = Dict{Int,NamedTuple}(\n")
