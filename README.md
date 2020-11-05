@@ -1,8 +1,8 @@
 # LOLTools.jl
 
-|  **Documentation**                        |  **Build Status**                  |
-|:------------------------------------------|------------------------------------|
-|  [![][docs-latest-img]][docs-latest-url]  |   [![][actions-img]][actions-url]  |
+|  **Documentation**                        |  **Build Status**                                                  |
+|:-----------------------------------------:|:------------------------------------------------------------------:|
+|  [![][docs-latest-img]][docs-latest-url]  |  [![][actions-img]][actions-url]  [![][codecov-img]][codecov-url]  |
 
 ### info
  * Riot Developer Portal :  <https://developer.riotgames.com/apis>
@@ -70,6 +70,9 @@ champ = DataDragon.ko_KR.Champions[114]
 
 [actions-img]: https://github.com/wookay/LOLTools.jl/workflows/CI/badge.svg
 [actions-url]: https://github.com/wookay/LOLTools.jl/actions
+
+[codecov-img]: https://codecov.io/gh/wookay/LOLTools.jl/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/wookay/LOLTools.jl/branch/master
 
 
 *LOLTools.jl* isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends.
