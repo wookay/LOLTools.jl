@@ -3,13 +3,15 @@
 
 include(normpath(@__DIR__, "common.jl")) # data_version locales resources
 
+using ProgressMeter
 using JSON2
+json_read(path) = JSON2.read(Base.read(path, String))
 
 locale = first(locales)
 rootdir = normpath(@__DIR__, data_version)
 datadir = normpath(rootdir, "data", locale)
 path = normpath(datadir, "champion.json")
-nt = JSON2.read(read(path, String))
+nt = json_read(path)
 jl = normpath(@__DIR__, "locales.jl")
 @info relpath(jl, @__DIR__)
 f = open(jl, "w")
@@ -46,20 +48,21 @@ for locale in locales
     for (k, v) in pairs(resources)
         local path = normpath(datadir, string(k, ".json"))
         local jl = normpath(gendir, string(k, ".jl"))
-        local nt = JSON2.read(read(path, String))
+        local nt = json_read(path)
         @info relpath(jl, @__DIR__)
         local f = open(jl, "w")
         write(f, "# generated\n")
+        local desc = string(locale, '/', basename(jl), ' ')
         if k in (:champion, :summoner)
             write(f, "$v = Dict{Int,NamedTuple}(\n")
-            for c in nt.data
+            @showprogress 1 desc for c in nt.data
                 id = parse(Int, c.key)
                 write(f, repeat(' ', 4), repr(id => c), ",\n")
             end
             write(f, ")\n")
         elseif k === :item
             write(f, "$v = Dict{Int,NamedTuple}(\n")
-            for (sym, c) in pairs(nt.data)
+            @showprogress 1 desc for (sym, c) in pairs(nt.data)
                 maps = Dict(pairs(c.maps)...)
                 d = merge(c, (maps=maps,))
                 n = parse(Int, String(sym))
