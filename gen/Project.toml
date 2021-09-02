@@ -1,0 +1,7 @@
+[deps]
+ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
+JSON2 = "2535ab7d-5cd8-5a07-80ac-9b1792aadce3"
+
+[compat]
+ProgressMeter = "1.3"
+JSON2 = "0.3"
