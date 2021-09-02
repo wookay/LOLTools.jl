@@ -1,6 +1,6 @@
 common.jl
 ```
-data_version = "9.24.2"
+data_version = 
 locales = ("en_US", "ko_KR")
 ```
 
