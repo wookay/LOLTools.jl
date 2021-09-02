@@ -8,8 +8,8 @@ end
 
 using HTTP, JSON2
 
-function lol_api_server(region::String)::HTTP.URI
-    merge(HTTP.URI("https://"), host=string(region, ".api.riotgames.com"), path="/")
+function lol_api_server(region_or_platform::String)::HTTP.URI
+    merge(HTTP.URI("https://"), host=string(region_or_platform, ".api.riotgames.com"), path="/")
 end
 
 function http_action(endpoint::HTTP.URI, path::String, headers::Vector{Pair{String,String}}=Vector{Pair{String,String}}(), query::Union{Nothing,Dict{String,String}}=nothing)
@@ -17,7 +17,7 @@ function http_action(endpoint::HTTP.URI, path::String, headers::Vector{Pair{Stri
     HTTP.get(url, headers; query=query)
 end
 
-function nothing_in_event(caller::Function, resp, result::Union{<:AbstractDTO, Array{<:AbstractDTO}, Set{<:AbstractDTO}})
+function nothing_in_event(caller::Function, resp, result::Union{Vector{Any}, Vector{String}, <:AbstractDTO, Array{<:AbstractDTO}, Set{<:AbstractDTO}})
     nothing
 end
 

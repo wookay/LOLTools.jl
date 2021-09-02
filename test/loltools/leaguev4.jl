@@ -19,7 +19,7 @@ routes() do
 end
 
 api_key = ""
-region = "kr"
-LeagueV4.challengerleagues(api_key, region, "RANKED_SOLO_5x5"; action=mock_action)
+platform = "kr"
+LeagueV4.challengerleagues(api_key, platform, "RANKED_SOLO_5x5"; action=mock_action)
 
 end # module test_loltools_leaguev4

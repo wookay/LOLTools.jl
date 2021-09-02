@@ -19,8 +19,8 @@ routes() do
 end
 
 api_key = ""
-region = "kr"
+platform = "kr"
 encryptedSummonerId = "id"
-ChampionMasteryV4.by_summoner_id(api_key, region, encryptedSummonerId; action=mock_action)
+ChampionMasteryV4.by_summoner_id(api_key, platform, encryptedSummonerId; action=mock_action)
 
 end # module test_loltools_championmasteryv4

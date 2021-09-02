@@ -17,7 +17,7 @@ test = ["Test", "Jive", "Bukdu"]
 
 [compat]
 julia = "1"
-HTTP = "0.8"
+HTTP = "0.8, 0.9"
 JSON2 = "0.3"
 Jive = "0.2"
 Bukdu = "0.4"

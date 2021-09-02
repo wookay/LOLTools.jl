@@ -19,7 +19,7 @@ routes() do
 end
 
 api_key = ""
-region = "kr"
-SummonerV4.summoner_by_name(api_key, region, "오뚜기3분미트볼"; action=mock_action)
+platform = "kr"
+SummonerV4.summoner_by_name(api_key, platform, "오뚜기3분미트볼"; action=mock_action)
 
 end # module test_loltools_summonerv4

@@ -12,14 +12,14 @@ end
 
 """
          champion_rotations(api_key::String,
-                            region::String ;
-                            endpoint::HTTP.URI = lol_api_server(region),
+                            platform::String ;
+                            endpoint::HTTP.URI = lol_api_server(platform),
                             action::Function = http_action,
                             event::Function = nothing_in_event)::ChampionInfo
 """
 function champion_rotations(api_key::String,
-                            region::String ;
-                            endpoint::HTTP.URI = lol_api_server(region),
+                            platform::String ;
+                            endpoint::HTTP.URI = lol_api_server(platform),
                             action::Function = http_action,
                             event::Function = nothing_in_event)::ChampionInfo
     call_api(ChampionInfo, api_key, action, endpoint, "/lol/platform/v3/champion-rotations", event, champion_rotations)

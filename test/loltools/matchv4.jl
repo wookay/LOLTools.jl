@@ -31,8 +31,8 @@ routes() do
 end
 
 api_key = ""
-region = "na1"
-MatchV4.match_by_tournament_code(api_key, region, "tournamentCode"; action=mock_action)
-MatchV4.match_by_id(api_key, region, 0; action=mock_action)
+platform = "na1"
+MatchV4.match_by_tournament_code(api_key, platform, "tournamentCode"; action=mock_action)
+MatchV4.match_by_id(api_key, platform, 0; action=mock_action)
 
 end # module test_loltools_matchv4

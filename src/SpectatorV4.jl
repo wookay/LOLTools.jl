@@ -26,14 +26,14 @@ end
 
 """
          featured_games(api_key::String,
-                        region::String ;
-                        endpoint::HTTP.URI = lol_api_server(region),
+                        platform::String ;
+                        endpoint::HTTP.URI = lol_api_server(platform),
                         action::Function = http_action,
                         event::Function = nothing_in_event)::FeaturedGames
 """
 function featured_games(api_key::String,
-                        region::String ;
-                        endpoint::HTTP.URI = lol_api_server(region),
+                        platform::String ;
+                        endpoint::HTTP.URI = lol_api_server(platform),
                         action::Function = http_action,
                         event::Function = nothing_in_event)::FeaturedGames
     call_api(FeaturedGames, api_key, action, endpoint, "/lol/spectator/v4/featured-games", event, featured_games)
@@ -41,16 +41,16 @@ end
 
 """
          active_games(api_key::String,
-                      region::String,
+                      platform::String,
                       encryptedSummonerId::String ;
-                      endpoint::HTTP.URI = lol_api_server(region),
+                      endpoint::HTTP.URI = lol_api_server(platform),
                       action::Function = http_action,
                       event::Function = nothing_in_event)::CurrentGameInfo
 """
 function active_games(api_key::String,
-                      region::String,
+                      platform::String,
                       encryptedSummonerId::String ;
-                      endpoint::HTTP.URI = lol_api_server(region),
+                      endpoint::HTTP.URI = lol_api_server(platform),
                       action::Function = http_action,
                       event::Function = nothing_in_event)::CurrentGameInfo
     call_api(CurrentGameInfo, api_key, action, endpoint, "/lol/spectator/v4/active-games/by-summoner/$encryptedSummonerId", event, active_games)

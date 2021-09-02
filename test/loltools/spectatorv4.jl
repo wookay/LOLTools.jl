@@ -18,7 +18,7 @@ routes() do
 end
 
 api_key = ""
-region = "kr"
-SpectatorV4.featured_games(api_key, region; action=mock_action)
+platform = "kr"
+SpectatorV4.featured_games(api_key, platform; action=mock_action)
 
 end # module test_loltools_spectatorv4
