@@ -8,15 +8,16 @@
  * Riot Developer Portal :  <https://developer.riotgames.com/apis>
  * To get the `RIOT_TOKEN` :  <https://developer.riotgames.com/docs/portal#web-apis>
 
-### MatchV4
+### MatchV5
 
 ```julia
-using LOLTools.MatchV4
+using LOLTools.MatchV5
 
 api_key = get(ENV, "RIOT_TOKEN", "")
-region = "euw1"
-match = MatchV4.match_by_id(api_key, region, 4249110676)
-@info match.participantIdentities[10].player.summonerName == "FPX Doinb"
+region = "asia"
+matchId = "KR_5424985325"
+match = MatchV5.match_by_match_id(api_key, region, matchId)
+@info match.info.participants[10].summonerName == "Chooooovyyyyyy"
 ```
 
 ### SummonerV4
@@ -25,9 +26,9 @@ match = MatchV4.match_by_id(api_key, region, 4249110676)
 using LOLTools.SummonerV4
 
 api_key = get(ENV, "RIOT_TOKEN", "")
-region = "kr"
-summoner = SummonerV4.summoner_by_name(api_key, region, "오뚜기3분미트볼")
-@info SummonerV4.summoner_by_id(api_key, region, summoner.id) == summoner
+platform = "kr"
+summoner = SummonerV4.summoner_by_name(api_key, platform, "오뚜기3분미트볼")
+@info SummonerV4.summoner_by_id(api_key, platform, summoner.id) == summoner
 ```
 
 ### SpectatorV4
@@ -36,8 +37,8 @@ summoner = SummonerV4.summoner_by_name(api_key, region, "오뚜기3분미트볼"
 using LOLTools.SpectatorV4
 
 api_key = get(ENV, "RIOT_TOKEN", "")
-region = "kr"
-featured = SpectatorV4.featured_games(api_key, region)
+platform = "kr"
+featured = SpectatorV4.featured_games(api_key, platform)
 @info featured.gameList[1].participants
 ```
 
@@ -47,8 +48,8 @@ featured = SpectatorV4.featured_games(api_key, region)
 using LOLTools.LeagueV4
 
 api_key = get(ENV, "RIOT_TOKEN", "")
-region = "kr"
-league = LeagueV4.challengerleagues(api_key, region, "RANKED_SOLO_5x5")
+platform = "kr"
+league = LeagueV4.challengerleagues(api_key, platform, "RANKED_SOLO_5x5")
 @info sort(league.entries, by = x -> x.leaguePoints, rev=true)[1:5]
 ```
 

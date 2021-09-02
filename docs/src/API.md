@@ -44,15 +44,14 @@ LeagueV4.entries_by_queue_tier_division
 LeagueExpV4.entries_by_queue_tier_division
 ```
 
-# MatchV4
+# MatchV5
 
-* <https://developer.riotgames.com/apis#match-v4>
+* <https://developer.riotgames.com/apis#match-v5>
 
 ```@docs
-MatchV4.match_by_tournament_code
-MatchV4.match_by_id
-MatchV4.matchlists
-MatchV4.timelines
+MatchV5.matches_by_puuid
+MatchV5.match_by_match_id
+MatchV5.match_timeline_by_match_id
 ```
 
 # SpectatorV4

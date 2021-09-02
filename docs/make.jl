@@ -8,7 +8,7 @@ makedocs(
                LOLTools.ChampionV3,
                LOLTools.LoLStatusV3,
                LOLTools.LeagueV4,
-               LOLTools.MatchV4,
+               LOLTools.MatchV5,
                LOLTools.SpectatorV4,
                LOLTools.SummonerV4,
                LOLTools.DataDragon,
