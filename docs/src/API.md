@@ -74,13 +74,6 @@ SummonerV4.summoner_by_name
 SummonerV4.summoner_by_id
 ```
 
-# DataDragon
-
-* <https://developer.riotgames.com/docs/lol#data-dragon>
-
-* `DataDragon.en_US`
-* `DataDragon.ko_KR`
-
 # GameClient
 
 * <https://developer.riotgames.com/docs/lol#game-client>

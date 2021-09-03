@@ -54,16 +54,7 @@ league = LeagueV4.challengerleagues(api_key, platform, "RANKED_SOLO_5x5")
 ```
 
 ### DataDragon
-
-```julia
-using LOLTools.DataDragon
-
-champ = DataDragon.en_US.Champions[114]
-@info champ.name == "Fiora"
-
-champ = DataDragon.ko_KR.Champions[114]
-@info champ.name == "피오라"
-```
+ * see https://github.com/wookay/LOLToolsDataDragon.jl
 
 
 [docs-latest-img]: https://img.shields.io/badge/docs-latest-blue.svg

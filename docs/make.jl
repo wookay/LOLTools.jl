@@ -11,7 +11,6 @@ makedocs(
                LOLTools.MatchV5,
                LOLTools.SpectatorV4,
                LOLTools.SummonerV4,
-               LOLTools.DataDragon,
                LOLTools.GameClient,
               ],
     clean = false,

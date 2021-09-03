@@ -52,16 +52,7 @@ league = LeagueV4.challengerleagues(api_key, region, "RANKED_SOLO_5x5")
 ```
 
 ### DataDragon
-
-```julia
-using LOLTools.DataDragon
-
-champ = DataDragon.en_US.Champions[114]
-@info champ.name == "Fiora"
-
-champ = DataDragon.ko_KR.Champions[114]
-@info champ.name == "피오라"
-```
+ * see https://github.com/wookay/LOLToolsDataDragon.jl
 
 
 *LOLTools.jl* isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends.

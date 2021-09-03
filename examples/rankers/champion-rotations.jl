@@ -1,6 +1,6 @@
 using Rankers.Storages
 using LOLTools: ChampionV3, http_action
-using LOLTools.DataDragon.en_US
+using LOLToolsDataDragon.DataDragon.en_US
 
 api_key = get(ENV, "RIOT_TOKEN", "")
 region = "kr"

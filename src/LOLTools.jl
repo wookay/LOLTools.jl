@@ -31,9 +31,6 @@ include("ChampionV3.jl")
 export LoLStatusV3
 include("LoLStatusV3.jl")
 
-export DataDragon
-include("DataDragon.jl")
-
 export GameClient
 include("GameClient.jl")
 
