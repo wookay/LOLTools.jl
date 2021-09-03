@@ -54,7 +54,7 @@ league = LeagueV4.challengerleagues(api_key, platform, "RANKED_SOLO_5x5")
 ```
 
 ### DataDragon
- * see https://github.com/wookay/LOLToolsDataDragon.jl
+ * see <https://github.com/wookay/LOLToolsDataDragon.jl>
 
 
 [docs-latest-img]: https://img.shields.io/badge/docs-latest-blue.svg
