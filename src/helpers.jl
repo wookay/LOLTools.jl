@@ -7,13 +7,14 @@ function (::Type{T})(nt::NT) where {T <: AbstractDTO, NT <: NamedTuple}
 end
 
 using HTTP, JSON2
+using .HTTP: URI
 
-function lol_api_server(region_or_platform::String)::HTTP.URI
-    merge(HTTP.URI("https://"), host=string(region_or_platform, ".api.riotgames.com"), path="/")
+function lol_api_server(region_or_platform::String)::URI
+    URI(scheme="https", host=string(region_or_platform, ".api.riotgames.com"), path="/")
 end
 
-function http_action(endpoint::HTTP.URI, path::String, headers::Vector{Pair{String,String}}=Vector{Pair{String,String}}(), query::Union{Nothing,Dict{String,String}}=nothing)
-    url = string(merge(endpoint, path=path))
+function http_action(endpoint::URI, path::String, headers::Vector{Pair{String,String}}=Vector{Pair{String,String}}(), query::Union{Nothing,Dict{String,String}}=nothing)
+    url = string(URI(endpoint, path=path))
     HTTP.get(url, headers; query=query)
 end
 
@@ -21,7 +22,7 @@ function nothing_in_event(caller::Function, resp, result::Union{Vector{Any}, Vec
     nothing
 end
 
-function call_api(::Type{T}, api_key::String, action::Function, endpoint::HTTP.URI, path::String, event::Function, caller::Function; query::Union{Nothing,Dict{String,String}}=nothing)::T where T
+function call_api(::Type{T}, api_key::String, action::Function, endpoint::URI, path::String, event::Function, caller::Function; query::Union{Nothing,Dict{String,String}}=nothing)::T where T
     headers = ["X-Riot-Token" => api_key]
     resp = action(endpoint, path, headers, query)
     data = JSON2.read(IOBuffer(resp.body))
