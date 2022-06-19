@@ -20,3 +20,8 @@ LOLTools.jl package is licensed under the MIT "Expat" License:
 > OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 > SOFTWARE.
 >
+
+
+Riot Games API Terms
+https://developer.riotgames.com/terms
+Please read these Riot Games API Terms (the "API Terms") carefully.
